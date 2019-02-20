@@ -1,11 +1,11 @@
 package java»ù´¡ÊÓÆµ;
 
-public interface Iterator {
+public interface Iterator<T> {
 
 	public boolean hasNext();
 	
-	public Object next();
+	public T next();
 	
-	public Object remove();
+	public T remove();
 
 }
