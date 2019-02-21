@@ -1,4 +1,4 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 public class Queue1<T>{
 	private LinkedList<T> list;

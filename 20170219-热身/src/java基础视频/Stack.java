@@ -1,14 +1,8 @@
-package java基础视频;
+package java鍩虹瑙嗛;
 
 import java.util.EmptyStackException;
 import java.util.Objects;
 
-/**
- * 栈:先进后出
- * 用自己创建的ArrayList实现
- * @author LJ
- *
- */
 
 public class Stack<T> {
 	private int size;

@@ -1,13 +1,7 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import java.util.Objects;
 
-/**
- * Ë«ÏòÁ´±í
- * »ùÓÚÁ´±íÊµÏÖ
- * @author LJ
- *
- */
 
 public class LinkedList<T> implements List<T>{
 	private int size;
@@ -15,7 +9,7 @@ public class LinkedList<T> implements List<T>{
 	private Node<T> last;
 	
 	public LinkedList() {
-		this.head = new Node<T>(null); // ¿Õ½Úµã
+		this.head = new Node<T>(null); // ç©ºèŠ‚ç‚¹
 	}
 
 	@Override
@@ -30,7 +24,7 @@ public class LinkedList<T> implements List<T>{
 
 	@Override
 	public boolean add(T o) {
-		if(this.last == null) { // Ö»ÓÐÍ·½áµãµÄÊ±ºò
+		if(this.last == null) { // ç©ºèŠ‚ç‚¹
 			this.last = new Node<T>(o);
 			this.last.pre = this.head;
 			this.head.next = this.last;
@@ -91,14 +85,14 @@ public class LinkedList<T> implements List<T>{
 	@Override
 	public boolean remove(T o) {
 		Node<T> node = head;
-		while(node.next != null) { // ·Çhead
+		while(node.next != null) { 
 			node = node.next;
 			if(Objects.equals(node.data, o)) {
 				node.pre.next = node.next;
-				if(node.next != null) { // µ±Ç°½ÚµãµÄÏÂÒ»¸ö½Úµã²»ÊÇÍ·½áµãÊ±£¬ÈôÊÇÍ·½áµã£¬¾Í²»ÓÃ¿¼ÂÇpre£»
+				if(node.next != null) { 
 					node.next.pre = node.pre;
 				}
-				if(node.next == null) { // µ±Ç°½ÚµãÊÇlast½ÚµãÊ±£¬É¾³ýÊ±ÐèÒªÐÞ¸Älast½Úµã
+				if(node.next == null) { 
 					this.last = node.pre;
 				}
 				this.size --;
@@ -184,8 +178,8 @@ public class LinkedList<T> implements List<T>{
 	
 
 	public static class Node<T>{
-		// ¾²Ì¬ÄÚ²¿ÀàºÍLinkedListÀà°ó¶¨£¬¶ø²»ÊÇÓëÊµÀý°ó¶¨
-		// ÒòÎª´ËÄÚ²¿ÀàÖ»¹©×Ô¼ºÓÃ£¬¹Ê¿ÉÒÔ²»Ð´getºÍset·½·¨£»
+		// ï¿½ï¿½Ì¬ï¿½Ú²ï¿½ï¿½ï¿½ï¿½LinkedListï¿½ï¿½ó¶¨£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Îªï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ã£ï¿½ï¿½Ê¿ï¿½ï¿½Ô²ï¿½Ð´getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		T data;
 		Node<T> next;

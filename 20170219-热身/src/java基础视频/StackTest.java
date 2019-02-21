@@ -1,4 +1,4 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import static org.junit.jupiter.api.Assertions.*;
 

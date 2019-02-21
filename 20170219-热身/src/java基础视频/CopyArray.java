@@ -1,7 +1,4 @@
-package java»ù´¡ÊÓÆµ;
-/**
- * Êı×é¸´ÖÆ
- */
+package javaåŸºç¡€è§†é¢‘;
 
 import java.util.Arrays;
 
@@ -17,18 +14,12 @@ public class CopyArray {
 	}
 
 	
-	/**
-	 * Êı×é¸´ÖÆ
-	 * @param src
-	 * @param size
-	 * @return
-	 */
 	public static int[] grow(int[] src, int size) {
-		// ·½·¨Ò»
+		// æ–¹å¼ä¸€
 		int[] target = new int[src.length+size];
 		System.arraycopy(src, 0, target, 0, src.length+size);
 		
-		// ·½·¨¶ş
+		// æ–¹å¼äºŒ
 		target = Arrays.copyOf(src, src.length+size);
 		return target;
 	}

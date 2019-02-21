@@ -1,4 +1,4 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 public interface Iterator<T> {
 

@@ -1,12 +1,12 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import junit.framework.Assert;
 
 class ArrayListTest {
 
@@ -20,7 +20,7 @@ class ArrayListTest {
 
 	@Test
 	void testAddObject() {
-		ArrayList l  = new ArrayList();
+		ArrayList<Integer> l  = new ArrayList<Integer>();
 		l.add(new Integer(10));
 		Assert.assertEquals(10, ((Integer)l.get(0)).intValue());
 	}

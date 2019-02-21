@@ -1,11 +1,4 @@
-package java基础视频;
-
-/**
- * List接口
- * 因为ArrayList和LinkedList都可以随机访问（通过index）
- * @author LJ
- *
- */
+package java鍩虹瑙嗛;
 
 public interface List<T> {
 	public int size();

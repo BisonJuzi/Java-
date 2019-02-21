@@ -1,15 +1,8 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import java.util.Objects;
 
-/**
- * ¶ş²æÊ÷
- * ÒªÇó£º×ó½Úµã<ÖĞ¼ä½Úµã<ÓÒ½Úµã
- * @author LJ
- *
- */
-
-public class BinaryTreeNode<T extends Comparable> {
+public class BinaryTreeNode<T> extends Comparable {
 
 	private T data;
 	private BinaryTreeNode<T> left;
@@ -63,8 +56,7 @@ public class BinaryTreeNode<T extends Comparable> {
 		}
 	}
 	
-	
-	// Î´Íê³É
+	// æœªå®Œæˆ
 	@SuppressWarnings("unchecked")
 	public BinaryTreeNode<T> delete(T o) {
 		BinaryTreeNode<T> node = search(o);
@@ -132,10 +124,11 @@ public class BinaryTreeNode<T extends Comparable> {
 			return this;
 		} 
 	}
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
-	
-	// Ğ´´úÂëĞÎ³ÉÏÂÃæµÄ¶ş²æÊ÷£¬leftChildµÄÖµ×ÜÊÇ±È¸¸½ÚµãµÄÖµĞ¡£¬rightChildµÄÖµ×ÜÊÇ±È¸¸½ÚµãµÄÖµ´ó
-	// ±ÈÈç£º5£¨2£¨1£¬null£©,7£¨6£¬null£©£©
-	// Ïò¶ş²æÊ÷ÖĞ²åÈëÖµ4ºÍ8£º5£¨2£¨1£¬4£©,7£¨6£¬8£©£©
 	
 }

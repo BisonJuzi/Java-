@@ -1,4 +1,4 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import org.junit.Assert;
 import org.junit.Test;

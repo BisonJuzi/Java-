@@ -1,14 +1,8 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-/**
- * ArrayList ÊµÏÖÊı×é×ÔÔö³¤
- * »ùÓÚÊı×éÊµÏÖ
- * @author LJ
- *
- */
 
 public class ArrayList<T> implements List<T> {
 	private int size;
@@ -169,7 +163,7 @@ public class ArrayList<T> implements List<T> {
 
 		@Override
 		public boolean hasNext() {
-			// ÒòÎª¸Ã·Ç¾²Ì¬ÄÚ²¿ÀàºÍ¾²Ì¬ÊµÀı°ó¶¨ÔÚÒ»Æğ£¬¹Ê¿ÉÒÔÖ±½ÓÊ¹ÓÃ·½·¨
+			// ï¿½ï¿½Îªï¿½Ã·Ç¾ï¿½Ì¬ï¿½Ú²ï¿½ï¿½ï¿½Í¾ï¿½Ì¬Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ğ£¬¹Ê¿ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ê¹ï¿½Ã·ï¿½ï¿½ï¿½
 			return position < size();
 		}
 

@@ -1,12 +1,6 @@
-package java基础视频;
+package java鍩虹瑙嗛;
 
 import java.util.NoSuchElementException;
-
-/**
- * 队列:先进先出
- * @author LJ
- *
- */
 
 public class Queue<T> {
 	private int size;

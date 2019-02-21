@@ -1,15 +1,15 @@
-package java»ù´¡ÊÓÆµ;
+package javaåŸºç¡€è§†é¢‘;
 
 import java.util.Objects;
 
-import java»ù´¡ÊÓÆµ.LinkedList.Node;
+import javaåŸºç¡€è§†é¢‘.LinkedList.Node;
 
 public class SingleLinkedList<T> implements List<T>{
 	private int size;
 	private Node<T> head;
 	
 	public SingleLinkedList() {
-		this.head = new Node<T>(null); // ¿Õ½Úµã
+		this.head = new Node<T>(null); 
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class SingleLinkedList<T> implements List<T>{
 		Node<T> removeNode = null;
 		int i = 0;
 		
-		if(index == 0) { //É¾³ıÍ·½áµã
+		if(index == 0) { //É¾ï¿½ï¿½Í·ï¿½ï¿½ï¿½
 			removeNode = head;
 			head = head.next;
 		}else {
@@ -185,8 +185,6 @@ public class SingleLinkedList<T> implements List<T>{
 	}
 	
 	private static class Node<T>{
-		// ¾²Ì¬ÄÚ²¿ÀàºÍLinkedListÀà°ó¶¨£¬¶ø²»ÊÇÓëÊµÀı°ó¶¨
-		// ÒòÎª´ËÄÚ²¿ÀàÖ»¹©×Ô¼ºÓÃ£¬¹Ê¿ÉÒÔ²»Ğ´getºÍset·½·¨£»
 		
 		T data;
 		Node<T> next;
