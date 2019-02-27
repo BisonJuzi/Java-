@@ -12,7 +12,12 @@ import org.jdom2.input.SAXBuilder;
 
 public class Configuration {
 
-	// <action.name, ActionConfig>
+	/**
+	 * <action.name, ActionConfig>
+	 * ActionConfig（<action.name，action.class，action.result>）
+	 * action.result（<result.name，result.jsp>...）
+	 * 返回ActionConfig
+	 */
 	Map<String,ActionConfig> actions = new HashMap<>();
 	
 	public Configuration(String fileName) {		

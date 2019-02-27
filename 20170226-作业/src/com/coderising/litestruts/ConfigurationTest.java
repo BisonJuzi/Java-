@@ -23,7 +23,7 @@ public class ConfigurationTest {
 	@Test
 	public void testGetClassName() {
 		
-		String clzName = cfg.getClassName("login"); // 
+		String clzName = cfg.getClassName("login"); 
 		Assert.assertEquals("com.coderising.litestruts.LoginAction", clzName);
 		
 		
