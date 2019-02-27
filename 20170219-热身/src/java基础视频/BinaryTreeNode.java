@@ -1,8 +1,7 @@
 package java基础视频;
 
-import java.util.Objects;
-
-public class BinaryTreeNode<T> extends Comparable {
+@SuppressWarnings("rawtypes")
+public class BinaryTreeNode<T> implements Comparable {
 
 	private T data;
 	private BinaryTreeNode<T> left;
@@ -34,7 +33,7 @@ public class BinaryTreeNode<T> extends Comparable {
 			this.data = o;
 			return this;
 		}
-		int compareResult = this.data.compareTo(o);
+		int compareResult = ((Comparable) this.data).compareTo(o);
 		if(compareResult > 0) {
 			if(this.left == null) {
 				this.left = new BinaryTreeNode<T>();
@@ -63,7 +62,7 @@ public class BinaryTreeNode<T> extends Comparable {
 		if(node == null) {
 			return null;
 		}
-		int compareResult = this.data.compareTo(o);
+		int compareResult = ((Comparable) this.data).compareTo(o);
 		if(compareResult > 0) {
 			return this.left.delete(o);
 		}else if(compareResult < 0) {
@@ -107,7 +106,7 @@ public class BinaryTreeNode<T> extends Comparable {
 		if(this.data == null) {
 			return null;
 		}
-		int compareResult = this.data.compareTo(o);
+		int compareResult = ((Comparable) this.data).compareTo(o);
 		if(compareResult > 0) {
 			if(this.left == null) {
 				return null;

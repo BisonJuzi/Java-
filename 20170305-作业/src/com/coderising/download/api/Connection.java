@@ -10,8 +10,9 @@ public interface Connection {
 	 * @return
 	 */
 	public byte[] read(int startPos,int endPos) throws IOException;
+	
 	/**
-	 * 得到数据内容的长度
+	 * Connection应该知道下载数据内容的总长度
 	 * @return
 	 */
 	public int getContentLength();

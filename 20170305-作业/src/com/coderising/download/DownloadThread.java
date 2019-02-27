@@ -12,6 +12,7 @@ public class DownloadThread extends Thread{
 	int endPos;
 	CyclicBarrier barrier;
 	String localFile;
+	
 	public DownloadThread( Connection conn, int startPos, int endPos, String localFile, CyclicBarrier barrier){
 		
 		this.conn = conn;		
@@ -20,20 +21,24 @@ public class DownloadThread extends Thread{
 		this.localFile = localFile;
 		this.barrier = barrier;
 	}
-	public void run(){	
-		
-		
+	
+	public void run(){		
 		try {
 			System.out.println("Begin to read [" + startPos +"-"+endPos+"]");
 			
+			// 读取指定范围文件
 			byte[] data = conn.read(startPos, endPos);		
 			
+			// 创建随机访问文件流，写入指定名称的文件中
 			RandomAccessFile file = new RandomAccessFile(localFile,"rw");
 			
-			file.seek(startPos);	
+			// 找到当前文件指针
+			file.seek(startPos); 	
 			
-			file.write(data);
+			// 将字节数组中的字节写入此文件
+			file.write(data); 
 			
+			// 关闭此随机访问文件流,并释放与该流关联的所有系统资源
 			file.close();
 			
 			conn.close();
@@ -41,9 +46,7 @@ public class DownloadThread extends Thread{
 			barrier.await(); //等待别的线程完成
 			
 		} catch (Exception e) {			
-			e.printStackTrace();
-			
-		} 
-		
+			e.printStackTrace();			
+		} 		
 	}
 }

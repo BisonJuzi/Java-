@@ -11,6 +11,7 @@ import com.coderising.download.impl.ConnectionManagerImpl;
 
 public class FileDownloaderTest {
 	boolean downloadFinished = false;
+	
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -27,7 +28,6 @@ public class FileDownloaderTest {
 		String url = "http://images2015.cnblogs.com/blog/610238/201604/610238-20160421154632101-286208268.png";
 		
 		FileDownloader downloader = new FileDownloader(url,"c:\\coderising\\tmp\\test.jpg");
-
 	
 		ConnectionManager cm = new ConnectionManagerImpl();
 		downloader.setConnectionManager(cm);
@@ -37,10 +37,8 @@ public class FileDownloaderTest {
 			public void notifyFinished() {
 				downloadFinished = true;
 			}
-
 		});
 
-		
 		downloader.execute();
 		
 		// 等待多线程下载程序执行完毕
@@ -54,9 +52,5 @@ public class FileDownloaderTest {
 			}
 		}
 		System.out.println("下载完成！");
-		
-		
-
 	}
-
 }

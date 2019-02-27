@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class ConfigurationTest {
 
-	
+	// 只传入文件名，希望Configuration可以自动去路径下找
 	Configuration cfg = new Configuration("struts.xml");
 	
 	@Before
@@ -23,7 +23,7 @@ public class ConfigurationTest {
 	@Test
 	public void testGetClassName() {
 		
-		String clzName = cfg.getClassName("login");
+		String clzName = cfg.getClassName("login"); // 
 		Assert.assertEquals("com.coderising.litestruts.LoginAction", clzName);
 		
 		

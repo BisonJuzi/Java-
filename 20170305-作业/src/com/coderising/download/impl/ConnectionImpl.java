@@ -28,7 +28,6 @@ class ConnectionImpl implements Connection {
 	@Override
 	public byte[] read(int startPos, int endPos) throws IOException {		
 		
-
 		HttpURLConnection httpConn = (HttpURLConnection)url.openConnection();
 		
 		httpConn.setRequestProperty("Range", "bytes=" + startPos + "-"
@@ -41,8 +40,6 @@ class ConnectionImpl implements Connection {
         byte[] buff = new byte[BUFFER_SIZE];  
      
         int totalLen = endPos - startPos + 1;
-        
-        
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();        
       

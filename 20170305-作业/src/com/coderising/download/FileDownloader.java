@@ -1,4 +1,8 @@
-package com.coderising.download;
+﻿package com.coderising.download;
+
+/**
+ * 把一个远程的文件保存到本地
+ */
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -30,6 +34,7 @@ public class FileDownloader {
 		
 	}
 	
+
 	public void execute(){
 		// 在这里实现你的代码， 注意： 需要用多线程实现下载（多线程下载即开启多个线程下载一个远程文件，然后保存到本地）
 		// 这个类依赖于其他几个接口, 你需要写这几个接口的实现代码
@@ -54,16 +59,19 @@ public class FileDownloader {
 		Connection conn  = null;
 		try {
 			
+			// 1.调用ConnectionManager的open方法打开连接
 			conn  = cm.open(this.url);
 			
+			// 2.通过Connection.getContentLength方法获得下载文件的长度
 			int length = conn.getContentLength();	
 			
+			// 3.将指定的字节写入此文件
 			createPlaceHolderFile(this.localFile, length);			
 			
+			// 4.分配每个线程下载范围：以二维数组存储各线程的开始位置与结束位置
 			int[][] ranges = allocateDownloadRange(DOWNLOAD_TRHEAD_NUM, length);
 			
 			for(int i=0; i< DOWNLOAD_TRHEAD_NUM; i++){
-			
 				
 				DownloadThread thread = new DownloadThread(
 						cm.open(url), 
@@ -73,16 +81,14 @@ public class FileDownloader {
 						barrier);
 				
 				thread.start();				
-			}
-			
+			}			
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}finally{
 			if(conn != null){
 				conn.close();
 			}
-		}
-		
+		}		
 	}
 	
 	private void createPlaceHolderFile(String fileName, int contentLen) throws IOException{
@@ -99,8 +105,8 @@ public class FileDownloader {
 	private int[][] allocateDownloadRange(int threadNum, int contentLen){
 		int[][] ranges = new int[threadNum][2];
 		
-		int eachThreadSize = contentLen / threadNum;// 姣忎釜绾跨▼闇�瑕佷笅杞界殑鏂囦欢澶у皬
-		int left = contentLen % threadNum;// 鍓╀笅鐨勫綊鏈�鍚庝竴涓嚎绋嬫潵澶勭悊
+		int eachThreadSize = contentLen / threadNum; // 每个线程需要下载的文件大小
+		int left = contentLen % threadNum; // 剩下的归最后一个线程来处理
 		
 		for(int i=0;i<threadNum;i++){
 			
@@ -112,10 +118,8 @@ public class FileDownloader {
 				endPos += left;
 			}
 			ranges[i][0] = startPos;
-			ranges[i][1] = endPos;
-			
-		}
-		
+			ranges[i][1] = endPos;			
+		}		
 		return ranges;
 	}
 	

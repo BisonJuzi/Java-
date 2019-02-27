@@ -12,6 +12,7 @@ import org.jdom2.input.SAXBuilder;
 
 public class Configuration {
 
+	// <action.name, ActionConfig>
 	Map<String,ActionConfig> actions = new HashMap<>();
 	
 	public Configuration(String fileName) {		
@@ -53,23 +54,15 @@ public class Configuration {
 					String resultName = resultElement.getAttributeValue("name");
 					String viewName = resultElement.getText().trim();
 					
-					ac.addViewResult(resultName, viewName);
-					
-				}
-				
+					ac.addViewResult(resultName, viewName);					
+				}				
 				this.actions.put(actionName, ac);
-			}
-			
-			
+			}						
 		} catch (JDOMException e) {
-			throw new ConfigurationException(e);
-			
+			throw new ConfigurationException(e);			
 		} catch (IOException e) {
-			throw new ConfigurationException(e);
-			
-		}
-		 
-		 
+			throw new ConfigurationException(e);			
+		}	 
 	}
 
 	public String getClassName(String action) {
@@ -88,12 +81,23 @@ public class Configuration {
 		return ac.getViewName(resultName);
 	}
 	
+	/**
+	 * <action name="login" class="com.coderising.litestruts.LoginAction">
+	 * 		<result name="success">/jsp/homepage.jsp</result>
+	 * 		<result name="fail">/jsp/showLogin.jsp</result>
+	 * </action>
+	 */
+	
 	private static class ActionConfig{
 		
-		String name;
-		String clzName;
-		Map<String,String> viewResult = new HashMap<>();
+		// name="login"
+		String name; 
 		
+		// class="com.coderising.litestruts.LoginAction"
+		String clzName; 
+		
+		//<("success","/jsp/homepage.jsp"),("fail"","/jsp/showLogin.jsp")>
+		Map<String,String> viewResult = new HashMap<>();
 		
 		public ActionConfig(String actionName, String clzName) {
 			this.name = actionName;
