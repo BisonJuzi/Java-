@@ -41,8 +41,8 @@ public class LinkedList implements List {
 			int k = 0;
 			//扫描单链表查找第index-1个节点
 			while(k < index-1 && p.next != null){
-				k++;
 				p = p.next;
+				k++;
 			}
 			//判断是否找到第index-1个节点
 			if(p != null){
@@ -61,28 +61,34 @@ public class LinkedList implements List {
 			Node p = head;
 			int k = 0;
 			while(k < index && p.next != null){
-				k++;
 				p = p.next;
+				k++;
 			}
 			return p.data;
 		}
 	}
+	
 	public Object remove(int index){
 		if(index <0 || index >= size){
 			throw new IndexOutOfBoundsException();
 		}
+		
 		if(head == null){
 			return null;
 		}
+		
 		if(index == 0){
-			head = head.next;
+			Node next = head.next;
+			Node cur = head;
+			cur.next = null;
+			head = next;
 			size --;
-			return head.data;
+			return cur.data;
 		}else{
-			if(head != null){
+//			if(head != null){
 				int k = 0;
 				Node p = head;
-				while(k < index-1 && p!=null){
+				while(k < index-1 && p!=null){ // 为什么非要判断p!=null呢
 					k++;
 					p = p.next;
 				}
@@ -92,7 +98,7 @@ public class LinkedList implements List {
 					size--;
 					return pn.data;
 				}
-			}
+//			}
 		}
 		return null;
 	}
@@ -127,10 +133,12 @@ public class LinkedList implements List {
 			 throw new NoSuchElementException();
 		}
 		Node node = head;
+		head.next = null;
 		head = node.next;
 		size--;
 		return node.data;
 	}
+	
 	public Object removeLast(){
 		if(head == null){
 			 throw new NoSuchElementException();
@@ -157,30 +165,28 @@ public class LinkedList implements List {
 		}
 	}
 	
+	
+	
 	/**
 	 * 把该链表逆置
 	 * 例如链表为 3->7->10 , 逆置后变为  10->7->3
 	 */
 	public void reverse(){	
 		
+		// 只有头结点（为空或不为空）
 		if(null == head || null == head.next){  
 		    return;  
 		}  
-		Stack<Node> s = new Stack<Node>();
-		
+		Stack<Node> s = new Stack<Node>();		
 		Node currentNode = head;
-		while(currentNode != null){
-			
-			s.push(currentNode);
-			
+		while(currentNode != null){			
+			s.push(currentNode);			
 			Node nextNode = currentNode.next;		
-			currentNode.next = null;  //把链接断开
+			currentNode.next = null;  //把链接断开，为什么要断开呢
 			currentNode = nextNode;
 		}
-		
-		
-		head = s.pop();
-		
+				
+		head = s.pop();		
 		currentNode = head;
 		while(!s.isEmpty()){
 			Node nextNode = s.pop();
@@ -217,10 +223,11 @@ public class LinkedList implements List {
 		
 		int k = 0;
 		while(k < len){
-			remove(i);
+			remove(i);// 没删除一个，后面的就往前挪了一个
 			k++;
 		}
 	}
+	
 	/**
 	 * 假定当前链表和list均包含已升序排列的整数
 	 * 从当前链表中取出那些list所指定的元素
@@ -288,10 +295,10 @@ public class LinkedList implements List {
 
 		Node pre = head;
 		Node cur = head;
-		while(cur.next != null){
+		while(cur.next != null){ // 控制pre往后移动
 			cur = cur.next;
 			Object data = pre.data;
-			while(cur.data == data){
+			while(cur.data == data){ // 控制cur往后移动
 				if(cur.next == null){
 					pre.next = null;
 					break;
@@ -299,9 +306,6 @@ public class LinkedList implements List {
 				pre.next = cur.next;
 				size--;
 				cur =cur.next;
-				if(cur == null){
-					break;
-				}
 			}
 			pre = pre.next;
 		}
@@ -323,7 +327,7 @@ public class LinkedList implements List {
 		int end = -1;
 		int i=0;
 		while(node != null){
-			if( (start == -1) && (int)node.data <= min){
+			if((int)node.data <= min){
 				start = i;
 			}
 			if( (int)node.data >= max  ){

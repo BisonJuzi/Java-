@@ -6,6 +6,8 @@ import org.jdom2.JDOMException;
 
 public class ConfigurationException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
+
 	public ConfigurationException(String msg) {
 		super(msg);
 	}

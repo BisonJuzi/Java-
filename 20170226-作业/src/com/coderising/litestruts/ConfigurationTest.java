@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class ConfigurationTest {
 
-	// 只传入文件名，希望Configuration可以自动去路径下找
+	// 只传入文件名，希望Configuration可以自动在某个路径下查找
 	Configuration cfg = new Configuration("struts.xml");
 	
 	@Before

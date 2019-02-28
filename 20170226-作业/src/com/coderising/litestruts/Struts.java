@@ -3,18 +3,18 @@ package com.coderising.litestruts;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-
-
 public class Struts {
 
 	// Map<String,ActionConfig> configuration = new HashMap<>();
 	private final static Configuration cfg = new Configuration("struts.xml");
 	
+	// actionName：action.name
+	// Map<String,String>：key-value，比如<("name","test"),("password","1234")>
     public static View runAction(String actionName, Map<String,String> parameters) {
 
         /*
          
-		0. 读取配置文件struts.xml（把字段和属性读出来转化成一个对象）
+		0. 读取配置文件struts.xml（设计一个类把字段和属性读出来转化成一个对象）
  		
  		1. 根据actionName找到相对应的class，例如LoginAction,
  		通过反射实例化（创建对象），根据parameters中的数据，调用对象的setter方法，
@@ -44,7 +44,7 @@ public class Struts {
     	}
     	
     	try {
-    		// 通过反射实例化，创建对象
+    		// 通过反射实例化
     		Class<?> clz = Class.forName(clzName);
 			Object action = clz.newInstance();
 			
@@ -54,22 +54,17 @@ public class Struts {
 			ReflectionUtil.setParameters(action, parameters);
 			
 			Method m = clz.getDeclaredMethod("execute");			
-			String resultName = (String)m.invoke(action);
+			String actionResultName = (String)m.invoke(action); // “success”、“fail”
+			String actionResultJsp = cfg.getResultView(actionName, actionResultName);			
 			
 			Map<String,Object> params = ReflectionUtil.getParamterMap(action);	
-			String resultView = cfg.getResultView(actionName, resultName);			
 			View view = new View();			
 			view.setParameters(params);
-			view.setJsp(resultView);
-			return view;
-			
-			
-			
-		} catch (Exception e) {
-			
+			view.setJsp(actionResultJsp);
+			return view;	
+		} catch (Exception e) {		
 			e.printStackTrace();
 		}
     	return null;
     }    
-
 }

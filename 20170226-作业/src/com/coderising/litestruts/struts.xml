@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts>
+    <action name="login" class="com.coderising.litestruts.LoginAction">
+        <result name="success">/jsp/homepage.jsp</result>
+        <result name="fail">/jsp/showLogin.jsp</result>
+    </action>
+    <action name="logout" class="com.coderising.litestruts.LogoutAction">
+    	<result name="success">/jsp/welcome.jsp</result>
+    	<result name="error">/jsp/error.jsp</result>
+    </action>
+</struts>
+
+<!-- 
+web应用：
+	1.从浏览器端发送数据到服务器端，发送数据中包含url、指向某个特定操作的action、表单数据、跟在url后面的参数；
+	2.服务器端得到数据之后，会从中提取出action之类的信息；
+	3.后端进行处理：根据发送过来的信息action=login。查询login对应的类为 com.coderising.litestruts.LoginAction，
+	  获取到类之后就实例化，通过反射的方式new出来，然后把从客户端传过来的参数通过set方法到LoginAction上去，然后调用excute方法去执行，
+	 然后调用LoginAction的get方法把执行结果取出来放到HashMap中，根据执行的结果调用result，把result的信息组成view对象返回
+	
+ -->

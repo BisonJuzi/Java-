@@ -1,5 +1,8 @@
 package com.coderising.litestruts;
 
+/**
+ * 把.xml文件的所有属性值存储起来
+ */
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -37,6 +40,10 @@ public class Configuration {
 		}
 	}
 	
+	/**
+	 * 解析 xml
+	 * @param is
+	 */
 	private void parseXML(InputStream is){
 		
 		 SAXBuilder builder = new SAXBuilder();
@@ -45,9 +52,9 @@ public class Configuration {
 			 
 			Document doc = builder.build(is);
 			
-			Element root = doc.getRootElement();
+			Element root = doc.getRootElement(); // <struts>...</struts>
 			
-			for(Element actionElement : root.getChildren("action")){
+			for(Element actionElement : root.getChildren("action")){ // <action>...</action>
 				
 				String actionName = actionElement.getAttributeValue("name");
 				String clzName = actionElement.getAttributeValue("class");
@@ -59,7 +66,7 @@ public class Configuration {
 					String resultName = resultElement.getAttributeValue("name");
 					String viewName = resultElement.getText().trim();
 					
-					ac.addViewResult(resultName, viewName);					
+					ac.addViewResult(resultName, viewName);	// ac.viewResult.put(resultName, viewName)	 			
 				}				
 				this.actions.put(actionName, ac);
 			}						
@@ -75,7 +82,7 @@ public class Configuration {
 		if(ac == null){
 			return null;
 		}
-		return ac.getClassName();
+		return ac.getClassName(); // ac.name
 	}
 
 	public String getResultView(String action, String resultName) {
@@ -83,7 +90,7 @@ public class Configuration {
 		if(ac == null){
 			return null;
 		}
-		return ac.getViewName(resultName);
+		return ac.getViewName(resultName); // ac.viewResult.get(resultName)
 	}
 	
 	/**

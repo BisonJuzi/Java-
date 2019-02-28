@@ -1,5 +1,6 @@
 package com.coderising.litestruts;
 
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -8,13 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-
 
 public class ReflectionUtilTest {
 
@@ -42,34 +40,10 @@ public class ReflectionUtilTest {
 		Set<String> acctualNames = new HashSet<>();
 		for(Method m : methods){
 			acctualNames.add(m.getName());
-		}
-		
+		}		
 		Assert.assertTrue(acctualNames.containsAll(expectedNames));
 	}
 	
-	@Test	
-	public void testSetParameters() throws Exception{
-		
-		String name = "com.coderising.litestruts.LoginAction";
-		Class<?> clz = Class.forName(name);
-		Object o = clz.newInstance();
-		
-		Map<String,String> params = new HashMap<String,String>();
-        params.put("name","test");
-        params.put("password","1234");
-		
-		ReflectionUtil.setParameters(o,params);
-		
-
-		
-		Field f = clz.getDeclaredField("name");
-		f.setAccessible(true);
-		Assert.assertEquals("test", f.get(o));
-		
-		f = clz.getDeclaredField("password");
-		f.setAccessible(true);
-		Assert.assertEquals("1234", f.get(o));
-	}
 	@Test
 	public void testGetGetterMethod() throws Exception{
 		String name = "com.coderising.litestruts.LoginAction";
@@ -86,9 +60,30 @@ public class ReflectionUtilTest {
 		Set<String> acctualNames = new HashSet<>();
 		for(Method m : methods){
 			acctualNames.add(m.getName());
-		}
-		
+		}		
 		Assert.assertTrue(acctualNames.containsAll(expectedNames));
+	}
+	
+	@Test	
+	public void testSetParameters() throws Exception{
+		
+		String name = "com.coderising.litestruts.LoginAction";
+		Class<?> clz = Class.forName(name);
+		Object o = clz.newInstance();
+		
+		Map<String,String> params = new HashMap<String,String>();
+        params.put("name","test");
+        params.put("password","1234");
+		
+		ReflectionUtil.setParameters(o,params);
+		
+		Field f = clz.getDeclaredField("name");
+		f.setAccessible(true);
+		Assert.assertEquals("test", f.get(o));
+		
+		f = clz.getDeclaredField("password");
+		f.setAccessible(true);
+		Assert.assertEquals("1234", f.get(o));
 	}
 	
 	@Test
@@ -98,9 +93,6 @@ public class ReflectionUtilTest {
 		LoginAction action = (LoginAction)clz.newInstance();
 		action.setName("test");
 		action.setPassword("123456");
-		
-		
-		
 		
 		Map<String,Object> params = ReflectionUtil.getParamterMap(action);
 		
