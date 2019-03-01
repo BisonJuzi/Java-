@@ -351,6 +351,7 @@ public class LinkedList implements List {
 		}else{
 			Node q = head;
 			//头判断
+			// 不在这个区间，有可能是<min或>max
 			if((int)q.data>min && (int)q.data<max){ 
 				head = head.next;
 				size--;
@@ -374,16 +375,21 @@ public class LinkedList implements List {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("[");
 		Node node = head;
+		if(node == null) {
+			return null;
+		}
 		while(node != null){
 			buffer.append(node.data);
-			if(node.next != null){
-				buffer.append(",");
+			if(node.next == null){
+				buffer.append("]");
+				break;
 			}
+			buffer.append(",");
 			node = node.next;
 		}
-		buffer.append("]");
 		return buffer.toString();
 	}
+	
 	/**
 	 * 假设当前链表和参数list指定的链表均以元素依值递增有序排列（同一表中的元素值各不相同）
 	 * 现要求生成新链表C，其元素为当前链表和list中元素的交集，且表C中的元素有依值递增有序排列
@@ -408,38 +414,33 @@ public class LinkedList implements List {
 			if(value1 == value2){
 				result.add(value1);
 				i1++;
-				i2++;		
-				
+				i2++;						
 			} else if (value1 < value2){
-				i1++;
-				
+				i1++;				
 			} else{
-				i2++;
-				
+				i2++;				
 			}
-		}
-		
-        
-	    return result;
-		
+		}		        
+	    return result;		
 		
 		/*LinkedList linkedList = new LinkedList();
 		intersection(linkedList,this.head, list.head);
 		return linkedList;*/
 	}
 	
+	@SuppressWarnings("unused")
 	private void intersection(LinkedList linkedList, Node node1,Node node2){
-		if(node1 == null){
-			while(node2 != null){
+		if(node1 == null){ // 链表1走完了
+			while(node2 != null){ // 把链表2剩下的都加进去
 				linkedList.add(node2.data);
 				node2 = node2.next;
 			}
-		}else if(node2 == null){
+		}else if(node2 == null){ // 链表2走完了，把链表1剩下的都加进去
 			while(node1 != null){
 				linkedList.add(node1.data);
 				node1 = node1.next;
 			}
-		}else{
+		}else{ // 两个链表都没走完
 			if((int)node1.data < (int)node2.data){
 				linkedList.add(node1.data);
 				intersection(linkedList,node1.next,node2);
